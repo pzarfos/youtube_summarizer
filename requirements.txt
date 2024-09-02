@@ -1,0 +1,9 @@
+faiss-cpu==1.8.0.post1
+# or faiss-gpu
+langchain==0.2.15
+langchain-community==0.2.15
+langchain-openai==0.1.23
+openai==1.43.0
+python-dotenv==1.0.1
+tiktoken==0.7.0
+youtube-transcript-api==0.6.2
