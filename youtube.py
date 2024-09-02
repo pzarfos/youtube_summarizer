@@ -4,31 +4,25 @@ GPT YouTube Summarizer
 Find OpenAI API Keys:  https://platform.openai.com/account/api-keys  (in OpenAI not ChatGPT)
 then...
 export OPENAI_API_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+FAISS tips - https://github.com/matsui528/faiss_tips
 """
 
 import argparse
 import os
 import sys
-import textwrap
 
 from dotenv import find_dotenv, load_dotenv
-from langchain_community.document_loaders import YoutubeLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-
-# from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain_openai import OpenAIEmbeddings
-from langchain_community.vectorstores.faiss import FAISS
-from langchain_community.chat_models import ChatOpenAI
-from langchain.chains import LLMChain
+from faiss_helper import FAISS_Helper
 from langchain.prompts.chat import (
     ChatPromptTemplate,
-    SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
+    SystemMessagePromptTemplate,
 )
-from faiss_helper import FAISS_Helper
-
-
-# FAISS tips - https://github.com/matsui528/faiss_tips
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import YoutubeLoader
+from langchain_community.vectorstores.faiss import FAISS
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 
 def create_db_from_youtube_video_url(video_url: str) -> FAISS:
@@ -65,6 +59,8 @@ def get_template_string():
         If you feel like you don't have enough information to answer the question, say "I don't know".
 
         Your answers should be verbose and detailed.
+
+        Your answers should be in Markdown format, especially for lists and tables.
         """
     return template
 
@@ -78,7 +74,8 @@ def get_response_from_query_chatgpt(db, query, k=4):
     docs = db.similarity_search(query, k=k)
     docs_page_content = " ".join([d.page_content for d in docs])
 
-    chat = ChatOpenAI(model_name="gpt-4-turbo", temperature=0.2)
+    model_name = "gpt-4o"
+    chat = ChatOpenAI(model_name=model_name, temperature=0.2)
 
     # Template to use for the system message prompt
     template = get_template_string()
@@ -93,33 +90,10 @@ def get_response_from_query_chatgpt(db, query, k=4):
         [system_message_prompt, human_message_prompt]
     )
 
-    chain = LLMChain(llm=chat, prompt=chat_prompt)
+    chain = chat_prompt | chat
 
-    response = chain.run(question=query, docs=docs_page_content)
-    response = response.replace("\n", "")
-    return response, docs
-
-
-def get_response_from_query_davinci(db, query, k=4):
-    """
-    text-davinci-003 can handle up to 4097 tokens. Setting the chunksize to 1000 and k to 4 maximizes
-    the number of tokens to analyze.
-    """
-
-    docs = db.similarity_search(query, k=k)
-    docs_page_content = " ".join([d.page_content for d in docs])
-
-    llm = OpenAI(model_name="text-davinci-003")
-
-    prompt = PromptTemplate(
-        input_variables=["question", "docs"],
-        template=get_template_string(),
-    )
-
-    chain = LLMChain(llm=llm, prompt=prompt)
-
-    response = chain.run(question=query, docs=docs_page_content)
-    response = response.replace("\n", "")
+    response = chain.invoke({"question": query, "docs": docs_page_content})
+    response = response.content
     return response, docs
 
 
@@ -128,12 +102,6 @@ parser.add_argument(
     "-u", "--url", type=str, required=False, help="The YouTube video URL to process"
 )
 parser.add_argument("-q", "--query", type=str, required=False, help="Your question")
-parser.add_argument(
-    "-c", "--chatgpt", type=str, required=False, help="Use ChatGPT 4 model (default)"
-)
-parser.add_argument(
-    "-d", "--davinci", type=str, required=False, help="Use DaVinci model"
-)
 args = parser.parse_args()
 
 if args.url:
@@ -145,10 +113,6 @@ query = "Summarize the video, and state any conclusions the presenter makes."
 if args.query:
     query = args.query
 
-model = "chatgpt"
-if args.davinci:
-    model = "davinci"
-
 # OpenAI
 load_dotenv(find_dotenv())
 openai_api_key = os.environ.get("OPENAI_API_KEY")
@@ -158,16 +122,13 @@ if not openai_api_key:
 
 embeddings = OpenAIEmbeddings()
 
-# Example usage:
+# Sample URL:
 # video_url = "https://www.youtube.com/watch?v=C3yuV8-r8UI"  # 15 free things in Las Vegas
 db = create_db_from_youtube_video_url(video_url)
 
 print("")
-response = ""
-if model == "chatgpt":
-    response, docs = get_response_from_query_chatgpt(db, query)
-elif model == "davinci":
-    response, docs = get_response_from_query_davinci(db, query)
+response, docs = get_response_from_query_chatgpt(db, query)
+print(response)
+print("")
 
-print(textwrap.fill(response, width=85))
 sys.exit(0)

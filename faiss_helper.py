@@ -1,8 +1,10 @@
 import os
-from langchain.vectorstores import FAISS
+
+from langchain_community.vectorstores import FAISS
 
 
 class FAISS_Helper:
+    DEACTIVATE_CACHE = True
     CACHE_DIR = ".faiss_cache"
 
     def cache_key_from_url(self, url):
@@ -19,11 +21,15 @@ class FAISS_Helper:
             os.mkdir(path)
 
     def save_to_cache(self, cache_key, db):
+        if self.DEACTIVATE_CACHE:
+            return
         self.mkdir(FAISS_Helper.CACHE_DIR)
         filename = self.filename(cache_key)
         db.save_local(filename)
 
     def load_from_cache(self, cache_key, embeddings):
+        if self.DEACTIVATE_CACHE:
+            return None
         filename = self.filename(cache_key)
         if os.path.exists(filename):
             return FAISS.load_local(filename, embeddings)
