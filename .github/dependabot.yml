@@ -1,0 +1,23 @@
+# Dependabot scanner and PR creation
+
+version: 2
+updates:
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - dependabot
+    commit-message:
+      prefix: "Dependabot: GitHub Actions"
+
+  # Python
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - dependabot
+    commit-message:
+      prefix: "Dependabot: Python"
