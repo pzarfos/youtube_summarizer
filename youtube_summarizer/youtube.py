@@ -13,7 +13,7 @@ import os
 import sys
 
 from dotenv import find_dotenv, load_dotenv
-from faiss_helper import FAISS_Helper
+from youtube_summarizer.faiss_helper import FAISS_Helper
 from langchain.prompts.chat import (
     ChatPromptTemplate,
     HumanMessagePromptTemplate,
@@ -25,7 +25,7 @@ from langchain_community.vectorstores.faiss import FAISS
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 
-def create_db_from_youtube_video_url(video_url: str) -> FAISS:
+def create_db_from_youtube_video_url(video_url: str, embeddings) -> FAISS:
     helper = FAISS_Helper()
     cache_key = helper.cache_key_from_url(video_url)
     print(f"cache_key: {cache_key}")
@@ -97,38 +97,42 @@ def get_response_from_query_chatgpt(db, query, k=4):
     return response, docs
 
 
-parser = argparse.ArgumentParser(description="Process some internet data.")
-parser.add_argument(
-    "-u", "--url", type=str, required=False, help="The YouTube video URL to process"
-)
-parser.add_argument("-q", "--query", type=str, required=False, help="Your question")
-args = parser.parse_args()
+def youtube_summarizer():
+    parser = argparse.ArgumentParser(description="Process some internet data.")
+    parser.add_argument(
+        "-u", "--url", type=str, required=False, help="The YouTube video URL to process"
+    )
+    parser.add_argument("-q", "--query", type=str, required=False, help="Your question")
+    args = parser.parse_args()
 
-if args.url:
-    video_url = args.url
-else:
-    video_url = input("Enter the YouTube video URL: ")
+    if args.url:
+        video_url = args.url
+    else:
+        video_url = input("Enter the YouTube video URL: ")
 
-query = "Summarize the video, and state any conclusions the presenter makes."
-if args.query:
-    query = args.query
+    query = "Summarize the video, and state any conclusions the presenter makes."
+    if args.query:
+        query = args.query
 
-# OpenAI
-load_dotenv(find_dotenv())
-openai_api_key = os.environ.get("OPENAI_API_KEY")
-if not openai_api_key:
-    print("Set OPENAI_API_KEY environment variable")
-    sys.exit(1)
+    # OpenAI
+    load_dotenv(find_dotenv())
+    openai_api_key = os.environ.get("OPENAI_API_KEY")
+    if not openai_api_key:
+        print("Set OPENAI_API_KEY environment variable")
+        return 1
 
-embeddings = OpenAIEmbeddings()
+    # Sample URL:
+    # video_url = "https://www.youtube.com/watch?v=C3yuV8-r8UI"  # 15 free things in Las Vegas
+    embeddings = OpenAIEmbeddings()
+    db = create_db_from_youtube_video_url(video_url, embeddings)
 
-# Sample URL:
-# video_url = "https://www.youtube.com/watch?v=C3yuV8-r8UI"  # 15 free things in Las Vegas
-db = create_db_from_youtube_video_url(video_url)
+    print("")
+    response, docs = get_response_from_query_chatgpt(db, query)
+    print(response)
+    print("")
 
-print("")
-response, docs = get_response_from_query_chatgpt(db, query)
-print(response)
-print("")
+    return 0
 
-sys.exit(0)
+
+if __name__ == "__main__":
+    sys.exit(youtube_summarizer())

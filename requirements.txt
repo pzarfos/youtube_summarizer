@@ -9,4 +9,6 @@ langchain-openai==0.3.23
 openai==1.86.0
 python-dotenv==1.1.0
 tiktoken==0.9.0
-youtube-transcript-api
+youtube-transcript-api==1.1.0
+# Development/Build
+pex==2.1.141

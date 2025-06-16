@@ -1,4 +1,9 @@
-.faiss_cache/
+# Python
 .venv/
 __pycache__/
 *.pyc
+
+# PEX
+build/
+youtube_summarizer.egg-info/
+youtube_summarizer.pex
