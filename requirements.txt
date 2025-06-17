@@ -11,4 +11,4 @@ python-dotenv==1.1.0
 tiktoken==0.9.0
 youtube-transcript-api==1.1.0
 # Development/Build
-pex==2.1.141
+pex==2.40.2
