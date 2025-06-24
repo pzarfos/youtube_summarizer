@@ -14,7 +14,7 @@ setup(
         "faiss-cpu==1.11.0",
         "langchain==0.3.26",
         "langchain-community==0.3.25",
-        "langchain-core==0.3.65",
+        "langchain-core==0.3.66",
         "langchain-openai==0.3.23",
         "openai==1.87.0",
         "python-dotenv==1.1.0",
