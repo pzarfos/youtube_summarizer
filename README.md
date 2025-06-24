@@ -7,7 +7,7 @@ A tool for summarizing YouTube videos using AI.
 1. Create and activate a virtual environment:
    ```bash
    python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   source .venv/bin/activate
    ```
 
 2. Install development dependencies:
