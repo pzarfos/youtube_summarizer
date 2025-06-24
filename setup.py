@@ -15,7 +15,7 @@ setup(
         "langchain==0.3.26",
         "langchain-community==0.3.25",
         "langchain-core==0.3.65",
-        "langchain-openai==0.3.23",
+        "langchain-openai==0.3.25",
         "openai==1.87.0",
         "python-dotenv==1.1.0",
         "tiktoken==0.9.0",
