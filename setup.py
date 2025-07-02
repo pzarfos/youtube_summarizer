@@ -17,7 +17,7 @@ setup(
         "langchain-core==0.3.65",
         "langchain-openai==0.3.23",
         "openai==1.93.0",
-        "python-dotenv==1.1.0",
+        "python-dotenv==1.1.1",
         "tiktoken==0.9.0",
         "youtube-transcript-api==1.1.0",
     ],
