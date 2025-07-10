@@ -1,5 +1,13 @@
 .PHONY: build dev clean run
 
+# Usage
+all:
+	@echo "make all        This message"
+	@echo "make build      Build the PEX file"
+	@echo "make dev        Install development dependencies"
+	@echo "make clean      Clean build artifacts"
+	@echo "make run        Run the PEX file"
+
 # Build the PEX file
 build:
 	pip install -r requirements.txt

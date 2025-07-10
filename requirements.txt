@@ -1,14 +1,18 @@
 # python -m pip install --upgrade -r requirements.txt
 # python -m pip list --outdated
-faiss-cpu==1.11.0
+
+# Warning: faiss-cpu 1.11.0 requires macOS 14 or higher
+faiss-cpu==1.10.0
 # or faiss-gpu
+
 langchain==0.3.26
 langchain-community==0.3.26
 langchain-core==0.3.66
-langchain-openai==0.3.25
+langchain-openai==0.3.26
 openai==1.93.1
 python-dotenv==1.1.1
 tiktoken==0.9.0
 youtube-transcript-api==1.1.1
+
 # Development/Build
 pex==2.45.0
