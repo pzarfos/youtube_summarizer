@@ -2,7 +2,7 @@
 # python -m pip list --outdated
 
 # Warning: faiss-cpu 1.11.0 requires macOS 14 or higher
-faiss-cpu==1.10.0
+faiss-cpu==1.11.0
 # or faiss-gpu
 
 langchain==0.3.26
