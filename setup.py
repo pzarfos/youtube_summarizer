@@ -19,6 +19,6 @@ setup(
         "openai==1.97.0",
         "python-dotenv==1.1.1",
         "tiktoken==0.9.0",
-        "youtube-transcript-api==1.1.1",
+        "youtube-transcript-api==1.2.1",
     ],
 )
