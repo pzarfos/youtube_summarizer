@@ -12,13 +12,9 @@ setup(
     },
     install_requires=[
         "faiss-cpu==1.10.0",
-        "langchain==0.3.27",
-        "langchain-community==0.3.26",
-        "langchain-core==0.3.69",
+        "langchain-community==0.3.27",
         "langchain-openai==0.3.28",
-        "openai==1.97.1",
         "python-dotenv==1.1.1",
-        "tiktoken==0.9.0",
-        "youtube-transcript-api==1.1.1",
+        "youtube-transcript-api==1.2.1",
     ],
 )
