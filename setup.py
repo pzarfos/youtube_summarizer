@@ -12,7 +12,7 @@ setup(
     },
     install_requires=[
         "faiss-cpu==1.10.0",
-        "langchain==0.3.26",
+        "langchain==0.3.27",
         "langchain-community==0.3.26",
         "langchain-core==0.3.69",
         "langchain-openai==0.3.28",
