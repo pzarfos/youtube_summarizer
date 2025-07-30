@@ -2,6 +2,13 @@
 
 A tool for summarizing YouTube videos using AI.
 
+## CLI
+
+```
+PYTHONPATH="." python youtube_summarizer/youtube.py --url <URL>
+# optional: --query <QUERY>
+```
+
 ## Development Setup
 
 1. Create and activate a virtual environment:

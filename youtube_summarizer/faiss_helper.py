@@ -37,7 +37,7 @@ class FAISS_Helper:
             return None
         filename = self.filename(cache_key)
         if os.path.exists(filename):
-            print(f"Loading from cace: {filename}")
+            print(f"Loading from cache: {filename}")
             return FAISS.load_local(
                 filename, embeddings, allow_dangerous_deserialization=True
             )

@@ -74,7 +74,8 @@ def get_response_from_query_chatgpt(db, query, k=4):
     docs = db.similarity_search(query, k=k)
     docs_page_content = " ".join([d.page_content for d in docs])
 
-    model_name = "o1"
+    # Warning: "o3" requires identity verification, like a drivers license
+    model_name = "o4-mini"  # "o1" also works
     chat = ChatOpenAI(model_name=model_name)
 
     # Template to use for the system message prompt
