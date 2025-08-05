@@ -10,7 +10,7 @@ langchain-openai==0.3.28
 python-dotenv==1.1.1
 
 # Warning: youtube-transcript-api 1.2.1 has breaking API changes
-youtube-transcript-api==1.1.1
+youtube-transcript-api==1.2.2
 
 # Development/Build
 pex==2.48.2
