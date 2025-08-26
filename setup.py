@@ -11,7 +11,7 @@ setup(
         ],
     },
     install_requires=[
-        "faiss-cpu==1.10.0",
+        "faiss-cpu==1.12.0",
         "langchain-community==0.3.27",
         "langchain-openai==0.3.28",
         "python-dotenv==1.1.1",
