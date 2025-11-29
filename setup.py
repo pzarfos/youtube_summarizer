@@ -14,7 +14,7 @@ setup(
         "faiss-cpu==1.10.0",
         "langchain-community==0.3.27",
         "langchain-openai==0.3.28",
-        "python-dotenv==1.1.1",
+        "python-dotenv==1.2.1",
         "youtube-transcript-api==1.1.1",
     ],
 )
