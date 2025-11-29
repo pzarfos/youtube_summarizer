@@ -5,12 +5,12 @@
 faiss-cpu==1.10.0
 # or faiss-gpu
 
-langchain-community==0.3.27
-langchain-openai==0.3.28
+langchain-community==0.3.31
+langchain-openai==0.3.35
 python-dotenv==1.2.1
 
 # Warning: youtube-transcript-api 1.2.1 has breaking API changes
 youtube-transcript-api==1.1.1
 
 # Development/Build
-pex==2.50.2
+pex==2.69.1
