@@ -13,4 +13,4 @@ python-dotenv==1.2.1
 youtube-transcript-api==1.1.1
 
 # Development/Build
-pex==2.72.0
+pex==2.77.1
