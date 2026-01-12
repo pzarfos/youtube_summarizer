@@ -13,6 +13,10 @@ build:
 	pip install -r requirements.txt
 	pex . -r requirements.txt -c youtube_summarizer -o youtube_summarizer.pex
 
+install: build
+	@[ -d "${HOME}/.local/bin" ] || mkdir -p "${HOME}/.local/bin"
+	/bin/cp -pf youtube_summarizer.pex "${HOME}/.local/bin/youtube_summarizer"
+
 # Install development dependencies
 dev:
 	pip install -r requirements.txt
