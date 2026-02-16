@@ -13,7 +13,7 @@ setup(
     install_requires=[
         "faiss-cpu==1.13.2",
         "langchain-community==0.3.31",
-        "langchain-openai==1.1.7",
+        "langchain-openai==1.1.9",
         "langchain-text-splitters==1.1.0",
         "python-dotenv==1.2.1",
         "youtube-transcript-api==1.2.3",
