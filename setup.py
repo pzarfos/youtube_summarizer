@@ -15,7 +15,7 @@ setup(
         "langchain-community==0.3.31",
         "langchain-openai==1.1.10",
         "langchain-text-splitters==1.1.1",
-        "python-dotenv==1.2.1",
+        "python-dotenv==1.2.2",
         "youtube-transcript-api==1.2.3",
     ],
 )
