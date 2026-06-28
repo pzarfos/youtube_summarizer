@@ -4,23 +4,32 @@ A tool for summarizing YouTube videos using AI.
 
 ## CLI
 
+Set your OpenAI API key before running the tool:
+
+```bash
+export OPENAI_API_KEY="..."
 ```
-PYTHONPATH="." python youtube_summarizer/youtube.py --url <URL>
+
+Run against a YouTube URL:
+
+```bash
+uv run youtube_summarizer --url <URL>
 # optional: --query <QUERY>
 ```
 
 ## Development Setup
 
-1. Create and activate a virtual environment:
+1. Install uv:
    ```bash
-   python -m venv .venv
-   source .venv/bin/activate
+   brew install uv
    ```
 
-2. Install development dependencies:
+2. Sync the project environment:
    ```bash
    make dev
    ```
+
+uv creates and manages `.venv` automatically from `pyproject.toml` and `uv.lock`.
 
 ## Building with PEX
 
@@ -35,19 +44,23 @@ This will create a `youtube_summarizer.pex` file that contains all dependencies.
 ## Running the Application
 
 ### Development Mode
+
 ```bash
-python -m youtube_summarizer.youtube
+uv run youtube_summarizer --url <URL>
 ```
 
 ### Using PEX
+
 After building:
+
 ```bash
-./youtube_summarizer.pex
+./youtube_summarizer.pex --url <URL>
 ```
 
 ## Cleanup
 
 To remove build artifacts:
+
 ```bash
 make clean
 ```

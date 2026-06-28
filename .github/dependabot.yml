@@ -13,7 +13,7 @@ updates:
       prefix: "Dependabot: GitHub Actions"
 
   # Python
-  - package-ecosystem: "pip"
+  - package-ecosystem: "uv"
     directory: "/"
     schedule:
       interval: "weekly"

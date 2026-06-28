@@ -1,0 +1,40 @@
+[project]
+name = "youtube_summarizer"
+version = "0.1"
+description = "A tool for summarizing YouTube videos using AI."
+readme = "README.md"
+requires-python = ">=3.10,<3.15"
+license = "MIT"
+dependencies = [
+    "faiss-cpu==1.14.2",
+    "langchain-community==0.3.31",
+    "langchain-openai==1.2.2",
+    "langchain-text-splitters==1.1.2",
+    "python-dotenv==1.2.2",
+    "youtube-transcript-api==1.2.3",
+]
+
+[project.scripts]
+youtube_summarizer = "youtube_summarizer.youtube:youtube_summarizer"
+
+[dependency-groups]
+dev = [
+    "pex==2.96.0",
+]
+
+[tool.ruff]
+line-length = 99
+
+[tool.uv]
+exclude-newer = "1 week"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["youtube_summarizer*"]
