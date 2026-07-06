@@ -29,7 +29,7 @@ line-length = 99
 exclude-newer = "1 week"
 
 [build-system]
-requires = ["setuptools>=82.0.1"]
+requires = ["setuptools>=83.0.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
