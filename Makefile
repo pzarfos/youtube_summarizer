@@ -14,6 +14,8 @@ all:
 	@echo "make lock       Update uv.lock"
 	@echo "make build      Build the PEX file"
 	@echo "make deploy     Deploy the PEX file to ~/.local/bin"
+	@echo "make outdated   List outdated packages"
+	@echo "make upgrade    Upgrade packages"
 	@echo "make clean      Clean build artifacts"
 	@echo "make run        Run the application with uv"
 
@@ -40,6 +42,15 @@ sync:
 # Update the lockfile
 lock:
 	$(UV) lock
+
+outdated:
+	@echo "Finding outdated packages..."
+	uv tree --outdated
+
+upgrade:
+	@echo "Upgrading packages..."
+	uv lock --upgrade
+	uv sync --all-groups
 
 # Clean build artifacts
 clean:

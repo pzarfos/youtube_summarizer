@@ -23,6 +23,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import YoutubeLoader
 from langchain_community.vectorstores.faiss import FAISS
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from youtube_transcript_api._errors import CouldNotRetrieveTranscript
 
 
 def create_db_from_youtube_video_url(video_url: str, embeddings) -> FAISS:
@@ -125,7 +126,13 @@ def youtube_summarizer():
     # Sample URL:
     # video_url = "https://www.youtube.com/watch?v=C3yuV8-r8UI"  # 15 free things in Las Vegas
     embeddings = OpenAIEmbeddings()
-    db = create_db_from_youtube_video_url(video_url, embeddings)
+    try:
+        db = create_db_from_youtube_video_url(video_url, embeddings)
+    except CouldNotRetrieveTranscript as e:
+        print("")
+        print("Could not fetch transcript (YouTube blocked the request):")
+        print(str(e))
+        return 1
 
     print("")
     response, docs = get_response_from_query_chatgpt(db, query)
