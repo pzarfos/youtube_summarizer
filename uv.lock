@@ -1298,12 +1298,12 @@ wheels = [
 
 [[package]]
 name = "pex"
-version = "2.98.2"
+version = "2.98.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/48/da/be814fd9c3f9405a207c71bc367e6c3a46b253a42ee4073e8795a6f1feea/pex-2.98.2.tar.gz", hash = "sha256:fe7c4076a27b00155da18b5a4e808838ef67812b8de3d9c2b72d10ef7e13a670", size = 5319090, upload-time = "2026-07-20T07:33:13.825Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/2a/54/76e0347aa41d7c52d2de55947a1a9cf6ef7abf1e53c42f060fac5d7c2b8f/pex-2.98.3.tar.gz", hash = "sha256:5e56e0915b28394d59001d709ad4b6502cae067afcd8bdc50a14cc6be4fbca82", size = 5319353, upload-time = "2026-07-27T20:01:22.28Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/80/c2/6a22edb04e48b154bd9fd22b6ce94c30e86a5c6c44aa6c065fdae9239042/pex-2.98.2-py2.py35.py36.py37.py38.py39.py310.py311-none-any.whl", hash = "sha256:631e8fa04d8680644b0fcf7a66bb548a788a7d6fa4dec19d1f168e3bac070035", size = 3986793, upload-time = "2026-07-20T07:33:09.488Z" },
-    { url = "https://files.pythonhosted.org/packages/8e/86/22e7893593218198cad73c2ce5ff36c10f9b6a74fa1be378961de7d6abe2/pex-2.98.2-py3.py312-none-any.whl", hash = "sha256:5cf0352f304068bd3dc32500c27315542243faeaad4422018c322a28a156b885", size = 1806816, upload-time = "2026-07-20T07:33:11.906Z" },
+    { url = "https://files.pythonhosted.org/packages/aa/1b/1c383a629ec09bce5506019e40fd8a44ec9980af6b981e36b4a4289a8242/pex-2.98.3-py2.py35.py36.py37.py38.py39.py310.py311-none-any.whl", hash = "sha256:602cf89b675da8631e024a78d8d0325c5a4ef93a660058407525d60d4c4af53b", size = 3987283, upload-time = "2026-07-27T20:01:18.692Z" },
+    { url = "https://files.pythonhosted.org/packages/96/58/5c627d4bc77c68c5ddb723e78f9c45c872b1caf06bbaf3a37e4395cb7a73/pex-2.98.3-py3.py312-none-any.whl", hash = "sha256:2fc233d91102a1ccfd46503358734a2324037f0d3caf99abb81a4eff433ffdd2", size = 1807302, upload-time = "2026-07-27T20:01:20.695Z" },
 ]
 
 [[package]]
@@ -2447,7 +2447,7 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "pex", specifier = "==2.98.2" }]
+dev = [{ name = "pex", specifier = "==2.98.3" }]
 
 [[package]]
 name = "youtube-transcript-api"
