@@ -340,7 +340,7 @@ name = "exceptiongroup"
 version = "1.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "typing-extensions", marker = "python_full_version < '3.11'" },
+    { name = "typing-extensions" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/50/79/66800aadf48771f6b62f7eb014e352e5d06856655206165d775e675a02c9/exceptiongroup-1.3.1.tar.gz", hash = "sha256:8b412432c6055b0b7d14c310000ae93352ed6754f70fa8f7c34141f91c4e3219", size = 30371, upload-time = "2025-11-21T23:01:54.787Z" }
 wheels = [
@@ -1298,12 +1298,12 @@ wheels = [
 
 [[package]]
 name = "pex"
-version = "2.98.2"
+version = "2.99.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/48/da/be814fd9c3f9405a207c71bc367e6c3a46b253a42ee4073e8795a6f1feea/pex-2.98.2.tar.gz", hash = "sha256:fe7c4076a27b00155da18b5a4e808838ef67812b8de3d9c2b72d10ef7e13a670", size = 5319090, upload-time = "2026-07-20T07:33:13.825Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4b/0d/f67ccb00ab36a92ad371a8a16e1336e059bab8957e4509dcb254fbd7f268/pex-2.99.0.tar.gz", hash = "sha256:d69b459ce706488fefdea5ada09310c547cce4475bea5cbab37de35e114bd888", size = 5324718, upload-time = "2026-07-30T18:19:50.888Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/80/c2/6a22edb04e48b154bd9fd22b6ce94c30e86a5c6c44aa6c065fdae9239042/pex-2.98.2-py2.py35.py36.py37.py38.py39.py310.py311-none-any.whl", hash = "sha256:631e8fa04d8680644b0fcf7a66bb548a788a7d6fa4dec19d1f168e3bac070035", size = 3986793, upload-time = "2026-07-20T07:33:09.488Z" },
-    { url = "https://files.pythonhosted.org/packages/8e/86/22e7893593218198cad73c2ce5ff36c10f9b6a74fa1be378961de7d6abe2/pex-2.98.2-py3.py312-none-any.whl", hash = "sha256:5cf0352f304068bd3dc32500c27315542243faeaad4422018c322a28a156b885", size = 1806816, upload-time = "2026-07-20T07:33:11.906Z" },
+    { url = "https://files.pythonhosted.org/packages/66/c0/641409444574c3b04acfa89a669e4d2668d7a32ddc8f3128c804e24b3ca4/pex-2.99.0-py2.py35.py36.py37.py38.py39.py310.py311-none-any.whl", hash = "sha256:24e26cd02c70e1957b6d3e34bd5c5fde79941d1c2adbce6c5d74f93bea66056b", size = 3991082, upload-time = "2026-07-30T18:19:47.489Z" },
+    { url = "https://files.pythonhosted.org/packages/32/0c/575fa8296a87de7a42dada1fb51d1f4b0498704ca3ed9256a8c48f1bc49e/pex-2.99.0-py3.py312-none-any.whl", hash = "sha256:05776a6b0e5dc798c9a9c466c6a867b0e99524811318179c9868789256c58627", size = 1807942, upload-time = "2026-07-30T18:19:49.414Z" },
 ]
 
 [[package]]
@@ -2447,7 +2447,7 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "pex", specifier = "==2.98.2" }]
+dev = [{ name = "pex", specifier = "==2.99.0" }]
 
 [[package]]
 name = "youtube-transcript-api"
