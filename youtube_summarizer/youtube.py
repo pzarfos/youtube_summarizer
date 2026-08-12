@@ -26,6 +26,10 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from youtube_transcript_api._errors import CouldNotRetrieveTranscript
 
 
+DEFAULT_OPENAI_MODEL = "gpt-5.6-terra"
+OPENAI_MODEL_ENV_VAR = "YOUTUBE_SUMMARIZER_MODEL"
+
+
 def create_db_from_youtube_video_url(video_url: str, embeddings) -> FAISS:
     helper = FAISS_Helper()
     cache_key = helper.cache_key_from_url(video_url)
@@ -66,18 +70,11 @@ def get_template_string():
     return template
 
 
-def get_response_from_query_chatgpt(db, query, k=4):
-    """
-    gpt-3.5-turbo can handle up to 4097 tokens. Setting the chunksize to 1000 and k to 4 maximizes
-    the number of tokens to analyze.
-    """
-
+def get_response_from_query_chatgpt(db, query, model_name, k=4):
     docs = db.similarity_search(query, k=k)
     docs_page_content = " ".join([d.page_content for d in docs])
 
-    # Warning: "o3" requires identity verification, like a drivers license
-    model_name = "o4-mini"  # "o1" also works
-    chat = ChatOpenAI(model_name=model_name)
+    chat = ChatOpenAI(model=model_name)
 
     # Template to use for the system message prompt
     template = get_template_string()
@@ -100,12 +97,30 @@ def get_response_from_query_chatgpt(db, query, k=4):
 
 
 def youtube_summarizer():
+    load_dotenv(find_dotenv())
+
     parser = argparse.ArgumentParser(description="Process some internet data.")
     parser.add_argument(
         "-u", "--url", type=str, required=False, help="The YouTube video URL to process"
     )
     parser.add_argument("-q", "--query", type=str, required=False, help="Your question")
+    parser.add_argument(
+        "--model",
+        type=str,
+        default=os.environ.get(OPENAI_MODEL_ENV_VAR) or DEFAULT_OPENAI_MODEL,
+        help=(
+            "OpenAI chat model to use "
+            f"(default: ${OPENAI_MODEL_ENV_VAR} or {DEFAULT_OPENAI_MODEL})"
+        ),
+    )
     args = parser.parse_args()
+
+    # OpenAI
+    openai_api_key = os.environ.get("OPENAI_API_KEY")
+    if not openai_api_key:
+        print("Set OPENAI_API_KEY environment variable")
+        return 1
+    print(f"OpenAI model: {args.model}")
 
     if args.url:
         video_url = args.url
@@ -115,13 +130,6 @@ def youtube_summarizer():
     query = "Summarize the video, and state any conclusions the presenter makes."
     if args.query:
         query = args.query
-
-    # OpenAI
-    load_dotenv(find_dotenv())
-    openai_api_key = os.environ.get("OPENAI_API_KEY")
-    if not openai_api_key:
-        print("Set OPENAI_API_KEY environment variable")
-        return 1
 
     # Sample URL:
     # video_url = "https://www.youtube.com/watch?v=C3yuV8-r8UI"  # 15 free things in Las Vegas
@@ -135,7 +143,7 @@ def youtube_summarizer():
         return 1
 
     print("")
-    response, docs = get_response_from_query_chatgpt(db, query)
+    response, docs = get_response_from_query_chatgpt(db, query, args.model)
     print(response)
     print("")
 
