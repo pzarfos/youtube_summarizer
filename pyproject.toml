@@ -19,7 +19,7 @@ youtube_summarizer = "youtube_summarizer.youtube:youtube_summarizer"
 
 [dependency-groups]
 dev = [
-    "pex==2.99.0",
+    "pex==2.100.2",
 ]
 
 [tool.ruff]
