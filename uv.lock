@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.10, <3.15"
 resolution-markers = [
     "python_full_version >= '3.13'",
@@ -1355,12 +1355,12 @@ wheels = [
 
 [[package]]
 name = "pex"
-version = "2.103.4"
+version = "2.103.5"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/27/e8/b84b51a5d594a96c858ef190ad9edb2ff6bbdd2c3f1ae532aabaf47b4d82/pex-2.103.4.tar.gz", hash = "sha256:d94bd82aae423b5f67cc7b23a8586e8fd2a7a247fbdbdd4ec08f48b2d1853809", size = 5458813, upload-time = "2026-10-03T02:57:29.973Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d7/a3/53080ee19c0aaf6c19a61fe21ed742cf9d763319c341f35d132b309eea25/pex-2.103.5.tar.gz", hash = "sha256:bb0303d5c276a97a1da982b7436fb26900fb4ea2cccf45c85daa0aa4dbd5ff32", size = 5457721, upload-time = "2026-10-19T03:12:59.626Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/32/df/cdf3387567782c90ea01f5e078c2e4adc2cf0f4ee6cc5598d443b47b3204/pex-2.103.4-py2.py35.py36.py37.py38.py39.py310.py311-none-any.whl", hash = "sha256:47ea6097981bfe1ca86a6e2da6f4ef6c954d6d3208c14f345a5b9c5dd23c4488", size = 4132444, upload-time = "2026-10-03T02:57:26.706Z" },
-    { url = "https://files.pythonhosted.org/packages/20/2c/c2ba55a30ca83ab65bfe6f2915b00116a05067ec466a122feb79aed8e92b/pex-2.103.4-py3.py312-none-any.whl", hash = "sha256:f261f906a1043246fad4abc4552bb302ce4bdae889529fc6bd6b03d555416b37", size = 1949299, upload-time = "2026-10-03T02:57:28.467Z" },
+    { url = "https://files.pythonhosted.org/packages/e3/15/f3524a66013575d31f887f74a162a0be55f053956abba934f02a1c76744d/pex-2.103.5-py2.py35.py36.py37.py38.py39.py310.py311-none-any.whl", hash = "sha256:19968da11106ba974a99b1f3f34524ae69e2ff7587edefee7afd77e87a1291f6", size = 4129580, upload-time = "2026-10-19T03:12:55.638Z" },
+    { url = "https://files.pythonhosted.org/packages/69/9d/3b07e680485b47577b64a2915d01f5211d0f3a4b9bfb0f34c5b1e9a6ee3e/pex-2.103.5-py3.py312-none-any.whl", hash = "sha256:aa7706cc1ae07d35a39a8fa258429423a348853c449fc7aa80b9297a9850d9aa", size = 1949341, upload-time = "2026-10-19T03:12:57.85Z" },
 ]
 
 [[package]]
@@ -2698,7 +2698,7 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "pex", specifier = "==2.103.4" }]
+dev = [{ name = "pex", specifier = "==2.103.5" }]
 
 [[package]]
 name = "youtube-transcript-api"
