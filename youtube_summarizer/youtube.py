@@ -13,20 +13,20 @@ import os
 import sys
 
 from dotenv import find_dotenv, load_dotenv
-from youtube_summarizer.faiss_helper import FAISS_Helper
+from langchain_community.document_loaders import YoutubeLoader
+from langchain_community.vectorstores.faiss import FAISS
 from langchain_core.prompts import (
     ChatPromptTemplate,
     HumanMessagePromptTemplate,
     SystemMessagePromptTemplate,
 )
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import YoutubeLoader
-from langchain_community.vectorstores.faiss import FAISS
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from youtube_transcript_api._errors import CouldNotRetrieveTranscript
 
+from youtube_summarizer.faiss_helper import FAISS_Helper
 
-DEFAULT_OPENAI_MODEL = "gpt-5.6-terra"
+DEFAULT_OPENAI_MODEL = "gpt-6.1-terra"
 OPENAI_MODEL_ENV_VAR = "YOUTUBE_SUMMARIZER_MODEL"
 
 
@@ -137,15 +137,15 @@ def youtube_summarizer():
     try:
         db = create_db_from_youtube_video_url(video_url, embeddings)
     except CouldNotRetrieveTranscript as e:
-        print("")
+        print()
         print("Could not fetch transcript (YouTube blocked the request):")
         print(str(e))
         return 1
 
-    print("")
-    response, docs = get_response_from_query_chatgpt(db, query, args.model)
+    print()
+    response, _docs = get_response_from_query_chatgpt(db, query, args.model)
     print(response)
-    print("")
+    print()
 
     return 0
 

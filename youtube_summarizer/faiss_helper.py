@@ -1,8 +1,7 @@
 import os
+import tempfile
 
 from langchain_community.vectorstores import FAISS
-import os
-import tempfile
 
 
 class FAISS_Helper:

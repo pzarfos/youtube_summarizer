@@ -16,6 +16,8 @@ all:
 	@echo "make deploy     Deploy the PEX file to ~/.local/bin"
 	@echo "make outdated   List outdated packages"
 	@echo "make upgrade    Upgrade packages"
+	@echo "make lint       Run ruff linter"
+	@echo "make test       Run unit tests"
 	@echo "make clean      Clean build artifacts"
 	@echo "make run        Run the application with uv"
 
@@ -51,6 +53,13 @@ upgrade:
 	@echo "Upgrading packages..."
 	uv lock --upgrade
 	uv sync --all-groups
+
+lint:
+	uv run ruff check .
+
+test: lint
+	@echo "⚠️ No unit tests yet"
+	@### NO_COLOR=1 uv run python -m pytest || exit 1
 
 # Clean build artifacts
 clean:

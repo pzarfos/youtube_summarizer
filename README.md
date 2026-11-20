@@ -10,11 +10,11 @@ Set your OpenAI API key before running the tool:
 export OPENAI_API_KEY="..."
 ```
 
-The summarizer uses `gpt-5.6-terra` by default. To change the model without
+The summarizer uses `gpt-6.1-terra` by default. To change the model without
 editing the source, set `YOUTUBE_SUMMARIZER_MODEL`:
 
 ```bash
-export YOUTUBE_SUMMARIZER_MODEL="gpt-5.6-terra"
+export YOUTUBE_SUMMARIZER_MODEL="gpt-6.1-terra"
 ```
 
 Run against a YouTube URL:
